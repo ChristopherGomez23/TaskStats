@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { MatDialog } from '@angular/material/dialog';
+import { AddTaskComponent } from '../add-task/add-task.component';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -8,8 +11,13 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 })
 export class DashboardComponent implements OnInit {
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    private dialogRef: MatDialog
     ) {}
+
+    openDialog(){
+      this.dialogRef.open(AddTaskComponent);
+    }
 
     todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
     inProgress = ['Coding','debugging']
@@ -27,5 +35,6 @@ export class DashboardComponent implements OnInit {
       );
     }
   }
+
   ngOnInit(): void {}
 }

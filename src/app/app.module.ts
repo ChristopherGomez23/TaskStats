@@ -18,9 +18,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+
 import { AuthService } from './shared/services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input'
+import { AddTaskComponent } from './components/add-task/add-task.component';
+
+
 
 @NgModule({
   declarations: [
@@ -28,7 +34,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     DashboardComponent,
     SignInComponent,
     SignUpComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    AddTaskComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -43,7 +52,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
-    DragDropModule
+    DragDropModule,
+    MatDialogModule,
+    MatInputModule,
   ],
   providers: [AuthService,FirebaseService],
   bootstrap: [AppComponent]

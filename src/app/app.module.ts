@@ -25,6 +25,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input'
 import { AddTaskComponent } from './components/add-task/add-task.component';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 
 
@@ -56,7 +57,7 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
     MatDialogModule,
     MatInputModule,
   ],
-  providers: [AuthService,FirebaseService],
+  providers: [AuthService, AuthGuard, FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

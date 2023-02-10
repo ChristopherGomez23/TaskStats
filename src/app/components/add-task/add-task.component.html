@@ -1,10 +1,15 @@
-<h2>Add Task</h2>
-<form class="example-form">
-    <mat-form-field class="example-full-width">
-      <mat-label>Task</mat-label>
-      <input #taskName name="taskName" class="form-control" placeholder="Ex. Read books">
-    </mat-form-field>
+<div class="content">
+<h2>Create New Task</h2>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Task</mat-label>
+        <input #taskName name="taskName" class="form-control" placeholder="Task Title">
+        <br>
+        <input #taskDesc name="taskDescription" class="form-control" placeholder="Task Description">
+      </mat-form-field>
+    </form>
     <br>
 <button class="btn btn-primary" (click)="addTask()">
-    Add
+    Add Task
 </button>
+</div>

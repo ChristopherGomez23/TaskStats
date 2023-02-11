@@ -16,7 +16,10 @@ export class DashboardComponent implements OnInit {
     ) {}
 
     openDialog(){
-      this.dialogRef.open(AddTaskComponent);
+      this.dialogRef.open(AddTaskComponent,{
+        width: '600px',
+        height: '300px',
+      });
     }
 
     todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];

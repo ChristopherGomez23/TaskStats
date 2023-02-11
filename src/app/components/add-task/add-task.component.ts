@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AddtaskService } from 'src/app/shared/services/addtask.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Task } from '../../shared/services/task';
 
 
 @Component({
@@ -9,13 +11,34 @@ import { AddtaskService } from 'src/app/shared/services/addtask.service';
 })
 export class AddTaskComponent implements OnInit {
 
-  constructor(private AddTaskServ: AddtaskService) { }
+  addTask = new FormGroup({
+    taskName: new FormControl('',[Validators.required]),
+    taskDescription: new FormControl('', [Validators.required])
+  })
+
+
+  constructor(
+    private dialogRef: MatDialogRef<AddTaskComponent>,
+    
+  ) { }
 
   ngOnInit(): void {
   }
-  taskName = 'Wow';
-  addTask(){
-    this.AddTaskServ.addTask(this.taskName)
+  
+  onNoClick(): void{
+    this.dialogRef.close();
+  }
+
+  submit(){
+    const { taskName, taskDescription } = this.addTask.value;
+
+    const taskObj: Task = {
+      id: '',
+      title: taskName,
+      description: taskDescription,
+    }
+    
+    this.dialogRef.close();
   }
 
 }

@@ -28,6 +28,10 @@ export class DashboardComponent implements OnInit {
       this.todoForm = this.fb.group({
         item : ['', Validators.required]
       });
+      const taskData = localStorage.getItem('todoItems');
+      if(taskData != null){
+        this.tasks = JSON.parse(taskData);
+      }
     }
 
     drop(event: CdkDragDrop<Task[]>) {
@@ -48,6 +52,7 @@ export class DashboardComponent implements OnInit {
         description: this.todoForm.value.item,
         done: false
       });
+      localStorage.setItem('todoItems', JSON.stringify(this.tasks))
       this.todoForm.reset();
     }
 
@@ -63,10 +68,15 @@ export class DashboardComponent implements OnInit {
       this.todoForm.reset();
       this.updateIndex = undefined;
       this.isEditEnabled = false;
+      localStorage.setItem('todoItems', JSON.stringify(this.tasks))
     }
 
     deleteTask(i: number){
+     let fIndex = this.tasks.indexOf(this.tasks[i]);
+     if (fIndex > -1){
       this.tasks.splice(i,1);
+     }
+      localStorage.setItem('todoItems',JSON.stringify(this.tasks));
     }
 
     deleteInProgressTask(i: number){

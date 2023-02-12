@@ -134,15 +134,27 @@ export class DashboardComponent implements OnInit {
     }
 
     deleteInProgressTask(i: number){
+     let fIndex = this.inprogress.indexOf(this.inprogress[i]);
+     if (fIndex > -1){
       this.inprogress.splice(i,1);
+     }
+      localStorage.setItem('inprogressItems',JSON.stringify(this.inprogress));
     }
 
     deleteReopenTask(i: number){
+     let fIndex = this.reopen.indexOf(this.reopen[i]);
+     if (fIndex > -1){
       this.reopen.splice(i,1);
+     }
+      localStorage.setItem('reopenItems',JSON.stringify(this.reopen));
     }
 
     deleteResolvedTask(i: number){
-      this.resolved.splice(i,1);
+      let fIndex = this.resolved.indexOf(this.resolved[i]);
+      if (fIndex > -1){
+       this.resolved.splice(i,1);
+      }
+       localStorage.setItem('resolvedItems',JSON.stringify(this.resolved));
     }
 
     signOut(){

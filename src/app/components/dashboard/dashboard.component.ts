@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+
 import { Task } from '../../model/task';
 
 @Component({
@@ -36,6 +37,18 @@ export class DashboardComponent implements OnInit {
       if(taskData != null){
         this.tasks = JSON.parse(taskData);
       }
+      const inprogressData = localStorage.getItem('inprogressItems');
+      if(inprogressData != null){
+        this.inprogress = JSON.parse(inprogressData);
+      }
+      const reopenData = localStorage.getItem('reopenItems');
+      if(reopenData != null){
+        this.reopen = JSON.parse(reopenData);
+      }
+      const resolvedData = localStorage.getItem('resolvedItems');
+      if(resolvedData != null){
+        this.resolved = JSON.parse(resolvedData);
+      }
     }
 
     drop(event: CdkDragDrop<Task[]>) {
@@ -52,15 +65,47 @@ export class DashboardComponent implements OnInit {
     }
 
     addTask(){
+      if(this.todoForm.value.selectStatus == 'Todo'){
       this.tasks.push({
         description: this.todoForm.value.item,
         id: this.todoForm.value.itemID,
-        status: '',
-        done: false,
-        
+        status: this.todoForm.value.selectStatus,
+        done: false,   
       });
       localStorage.setItem('todoItems', JSON.stringify(this.tasks))
       this.todoForm.reset();
+    }
+    else if(this.todoForm.value.selectStatus == 'Inprogress'){
+      this.inprogress.push({
+        description: this.todoForm.value.item,
+        id: this.todoForm.value.itemID,
+        status: this.todoForm.value.selectStatus,
+        done: false,   
+      });
+      localStorage.setItem('inprogressItems', JSON.stringify(this.inprogress))
+      this.todoForm.reset();
+    }
+    else if(this.todoForm.value.selectStatus == 'Reopen'){
+      this.reopen.push({
+        description: this.todoForm.value.item,
+        id: this.todoForm.value.itemID,
+        status: this.todoForm.value.selectStatus,
+        done: false,   
+      });
+      localStorage.setItem('reopenItems', JSON.stringify(this.reopen))
+      this.todoForm.reset();
+    }
+    else if(this.todoForm.value.selectStatus == 'Resolved'){
+      this.resolved.push({
+        description: this.todoForm.value.item,
+        id: this.todoForm.value.itemID,
+        status: this.todoForm.value.selectStatus,
+        done: true,   
+      });
+      localStorage.setItem('resolvedItems', JSON.stringify(this.resolved))
+      this.todoForm.reset();
+    }
+   
     }
 
     onEdit(item : Task, i : number){
@@ -71,6 +116,8 @@ export class DashboardComponent implements OnInit {
 
     updateTask(){
       this.tasks[this.updateIndex].description = this.todoForm.value.item;
+      this.tasks[this.updateIndex].id = this.todoForm.value.itemID;
+      this.tasks[this.updateIndex].status = this.todoForm.value.selectStatus;
       this.tasks[this.updateIndex].done = false;
       this.todoForm.reset();
       this.updateIndex = undefined;

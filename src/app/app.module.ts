@@ -72,4 +72,6 @@ import { AuthGuard } from './shared/guard/auth.guard';
   providers: [AuthService, AuthGuard, FirebaseService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+}

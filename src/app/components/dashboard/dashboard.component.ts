@@ -14,7 +14,8 @@ export class DashboardComponent implements OnInit {
   todoForm !: FormGroup;
   tasks: Task [] = [];
   inprogress: Task [] = [];
-  done: Task [] = [];
+  reopen: Task [] = [];
+  resolved: Task [] = [];
 
   updateIndex !: any;
   isEditEnabled : boolean = false;
@@ -26,7 +27,10 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit(): void {
       this.todoForm = this.fb.group({
-        item : ['', Validators.required]
+        item : ['', Validators.required],
+        itemID : ['', Validators.required],
+        selectStatus : ['', Validators.required]
+
       });
       const taskData = localStorage.getItem('todoItems');
       if(taskData != null){
@@ -50,7 +54,10 @@ export class DashboardComponent implements OnInit {
     addTask(){
       this.tasks.push({
         description: this.todoForm.value.item,
-        done: false
+        id: this.todoForm.value.itemID,
+        status: '',
+        done: false,
+        
       });
       localStorage.setItem('todoItems', JSON.stringify(this.tasks))
       this.todoForm.reset();
@@ -83,15 +90,15 @@ export class DashboardComponent implements OnInit {
       this.inprogress.splice(i,1);
     }
 
-    deleteDoneTask(i: number){
-      this.done.splice(i,1);
+    deleteReopenTask(i: number){
+      this.reopen.splice(i,1);
+    }
+
+    deleteResolvedTask(i: number){
+      this.resolved.splice(i,1);
     }
 
     signOut(){
       this.auth.SignOut()
     }
-
-
-
-
 }

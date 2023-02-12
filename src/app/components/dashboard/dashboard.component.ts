@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { MatDialog } from '@angular/material/dialog';
-import { AddTaskComponent } from '../add-task/add-task.component';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Task } from '../../model/task';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,34 +10,78 @@ import { AddTaskComponent } from '../add-task/add-task.component';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+
+  todoForm !: FormGroup;
+  tasks: Task [] = [];
+  inprogress: Task [] = [];
+  done: Task [] = [];
+
+  updateIndex !: any;
+  isEditEnabled : boolean = false;
+
   constructor(
-    public authService: AuthService,
-    private dialogRef: MatDialog
+    private fb: FormBuilder,
+    public auth: AuthService,
     ) {}
 
-    openDialog(){
-      this.dialogRef.open(AddTaskComponent,{
-        width: '600px',
-        height: '300px',
+    ngOnInit(): void {
+      this.todoForm = this.fb.group({
+        item : ['', Validators.required]
       });
     }
 
-    todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-    inProgress = ['Coding','debugging'];
-    done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
-
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+    drop(event: CdkDragDrop<Task[]>) {
+      if (event.previousContainer === event.container) {
+        moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      } else {
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex,
+        );
+      }
     }
-  }
 
-  ngOnInit(): void {}
+    addTask(){
+      this.tasks.push({
+        description: this.todoForm.value.item,
+        done: false
+      });
+      this.todoForm.reset();
+    }
+
+    onEdit(item : Task, i : number){
+      this.todoForm.controls['item'].setValue(item.description);
+      this.updateIndex = i;
+      this.isEditEnabled = true;
+    }
+
+    updateTask(){
+      this.tasks[this.updateIndex].description = this.todoForm.value.item;
+      this.tasks[this.updateIndex].done = false;
+      this.todoForm.reset();
+      this.updateIndex = undefined;
+      this.isEditEnabled = false;
+    }
+
+    deleteTask(i: number){
+      this.tasks.splice(i,1);
+    }
+
+    deleteInProgressTask(i: number){
+      this.inprogress.splice(i,1);
+    }
+
+    deleteDoneTask(i: number){
+      this.done.splice(i,1);
+    }
+
+    signOut(){
+      this.auth.SignOut()
+    }
+
+
+
+
 }

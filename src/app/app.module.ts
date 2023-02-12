@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
-import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -16,7 +15,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
-import { AddTaskComponent } from './components/add-task/add-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -43,7 +41,6 @@ import { AuthGuard } from './shared/guard/auth.guard';
     SignInComponent,
     SignUpComponent,
     VerifyEmailComponent,
-    AddTaskComponent,
     
     
   ],
@@ -54,7 +51,6 @@ import { AuthGuard } from './shared/guard/auth.guard';
     FormsModule,
     MatToolbarModule,
     MatButtonModule,
-    MatDialogModule,
     MatCardModule,
     MatInputModule,
     MatIconModule,

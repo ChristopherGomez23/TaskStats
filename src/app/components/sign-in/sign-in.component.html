@@ -1,21 +1,23 @@
-<div class="container">
-<div class="displayTable">
-    <div class="displayTableCell">
-      <div class="authBlock">
-        <h3>Sign In</h3>
-        <div class="formGroup">
-          <input type="text" class="form-control" placeholder="Email Address" #userName required>
-        </div>
-        <div class="formGroup">
-          <input type="password" class="form-control" placeholder="Password" #userPassword required>
-        </div>
-        <div class="formGroup">
-          <input type="button" class="btn btn-primary" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
+<main>
+  <div class="container">
+    <div class="displayTable">
+        <div class="displayTableCell">
+          <div class="authBlock">
+            <h3>Sign In</h3>
+            <div class="formGroup">
+              <input type="text" class="form-control" placeholder="Email Address" #userName required>
+            </div>
+            <div class="formGroup">
+              <input type="password" class="form-control" placeholder="Password" #userPassword required>
+            </div>
+            <div class="formGroup">
+              <input type="button" class="btn btn-primary" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
+            </div>
+          </div>
+          <div class="redirectToLogin">
+            <span>Don't have an account?<span class="redirect" routerLink="/register-user"> Sign Up</span></span>
+          </div>
         </div>
       </div>
-      <div class="redirectToLogin">
-        <span>Don't have an account?<span class="redirect" routerLink="/register-user"> Sign Up</span></span>
-      </div>
-    </div>
   </div>
-</div>
+</main>

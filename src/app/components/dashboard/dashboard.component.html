@@ -4,16 +4,16 @@
     <div class="col-md-2">
       <div class="mat-card-container">
 
-        <mat-card>
+        <mat-card class="mat-card">
           <form [formGroup]="todoForm">
             <mat-form-field appearance="outline">
               <mat-label>Create New Task</mat-label>
               <input formControlName="item" matInput placeholder="Task Name">
-              <mat-icon matSuffix>task</mat-icon>
+              <mat-icon matSuffix [ngStyle]="{'color':'salmon'}">task</mat-icon>
             </mat-form-field>
             <div class="form-btn-container ">
               <button *ngIf="!isEditEnabled" [disabled]="todoForm.invalid" mat-raised-button color="primary" (click)="addTask()">Create Task</button>
-              <button *ngIf="isEditEnabled" (click)="updateTask()" [disabled]="todoForm.invalid" mat-raised-button color="primary">Update Task</button>
+              <button *ngIf="isEditEnabled"  [disabled]="todoForm.invalid" mat-raised-button color="primary" (click)="updateTask()">Update Task</button>
             </div>
           </form>
         </mat-card>

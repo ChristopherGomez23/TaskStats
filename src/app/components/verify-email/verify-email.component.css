@@ -1,3 +1,8 @@
+main{
+    width: 100%;
+    height: 100vh;
+    padding-top: 200px;
+}
 .displayTable{
     width: 400px;
     height: 400px;

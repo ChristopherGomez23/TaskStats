@@ -53,7 +53,7 @@
         <div cdkDropListGroup>
           <div class="row">
 
-            <div class="col-md-4">
+            <div class="col-md-3">
               <!-- To do -->
               <div class="example-container">
                 <div class="cdk-title-container">
@@ -65,7 +65,12 @@
                   [cdkDropListData]="tasks"
                   class="example-list"
                   (cdkDropListDropped)="drop($event)">
-                  <div class="example-box" *ngFor="let item of tasks" cdkDrag>{{item.taskName}} <br> {{item.taskId}}
+                  <div class="example-box" *ngFor="let item of tasks" cdkDrag>
+                    <div>
+                      <strong>Task Name</strong>  : {{item.taskName.charAt(0).toUpperCase() + item.taskName.slice(1).toLowerCase()}}
+                        <br>
+                      <strong>Task ID</strong> : {{item.taskId.charAt(0).toUpperCase() + item.taskId.slice(1).toLowerCase()}}
+                    </div>
                       <div class="box">
                           <div class="btn-icon-container">
                             <button mat-icon-button color="warn" (click)="deleteEntry(item.id)"><mat-icon>delete</mat-icon></button>
@@ -82,7 +87,7 @@
             
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
               <!-- Inprogress -->
               <div class="example-container">
                 <div class="cdk-title-container">
@@ -94,7 +99,12 @@
                   [cdkDropListData]="inprogress"
                   class="example-list"
                   (cdkDropListDropped)="drop($event)">
-                  <div class="example-box" *ngFor="let item of inprogress" cdkDrag>{{item.taskName}} <br> {{item.taskId}}
+                  <div class="example-box" *ngFor="let item of inprogress" cdkDrag>
+                    <div>
+                      <strong>Task Name</strong>  : {{item.taskName.charAt(0).toUpperCase() + item.taskName.slice(1).toLowerCase()}}
+                        <br>
+                      <strong>Task ID</strong> : {{item.taskId.charAt(0).toUpperCase() + item.taskId.slice(1).toLowerCase()}}
+                    </div>
                     <div class="box">
                       <div class="btn-icon-container">
                         <button mat-icon-button color="warn" (click)="deleteEntry(item.id)"><mat-icon>delete</mat-icon></button>
@@ -110,7 +120,7 @@
               </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
               <!-- Reopen -->
               <div class="example-container">
                 <div class="cdk-title-container">
@@ -122,7 +132,12 @@
                   [cdkDropListData]="reopen"
                   class="example-list"
                   (cdkDropListDropped)="drop($event)">
-                  <div class="example-box" *ngFor="let item of reopen" cdkDrag>{{item.taskName}} <br> {{item.taskId}}
+                  <div class="example-box" *ngFor="let item of reopen" cdkDrag>
+                    <div>
+                      <strong>Task Name</strong>  : {{item.taskName.charAt(0).toUpperCase() + item.taskName.slice(1).toLowerCase()}}
+                        <br>
+                      <strong>Task ID</strong> : {{item.taskId.charAt(0).toUpperCase() + item.taskId.slice(1).toLowerCase()}}
+                    </div>
                     <div class="box">
                       <div class="btn-icon-container">
                         <button mat-icon-button color="warn" (click)="deleteEntry(item.id)"><mat-icon>delete</mat-icon></button>
@@ -138,7 +153,7 @@
               </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
               <!-- Resolved -->
               <div class="example-container">
                 <div class="cdk-title-container"> 
@@ -150,7 +165,12 @@
                   [cdkDropListData]="resolved"
                   class="example-list"
                   (cdkDropListDropped)="drop($event)">
-                  <div class="example-box" *ngFor="let item of resolved" cdkDrag>{{item.taskName}} <br> {{item.taskId}}
+                  <div class="example-box" *ngFor="let item of resolved" cdkDrag>
+                    <div>
+                      <strong>Task Name</strong>  : {{item.taskName.charAt(0).toUpperCase() + item.taskName.slice(1).toLowerCase()}}
+                        <br>
+                      <strong>Task ID</strong> : {{item.taskId.charAt(0).toUpperCase() + item.taskId.slice(1).toLowerCase()}}
+                    </div>
                     <div class="box">
                       <div class="btn-icon-container">
                         <button mat-icon-button color="warn" (click)="deleteEntry(item.id)"><mat-icon>delete</mat-icon></button>

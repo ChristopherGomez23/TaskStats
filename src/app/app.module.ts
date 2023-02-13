@@ -24,6 +24,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FirebaseService } from './shared/services/firebase.service';
+import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
@@ -41,9 +42,7 @@ import { AuthGuard } from './shared/guard/auth.guard';
     DashboardComponent,
     SignInComponent,
     SignUpComponent,
-    VerifyEmailComponent,
-    
-    
+    VerifyEmailComponent, 
   ],
   imports: [
     BrowserModule,
@@ -73,5 +72,7 @@ import { AuthGuard } from './shared/guard/auth.guard';
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-
+  constructor(){
+    FirebaseTSApp.init(environment.firebase);
+  }
 }

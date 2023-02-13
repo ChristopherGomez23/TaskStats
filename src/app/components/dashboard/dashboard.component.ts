@@ -13,12 +13,11 @@ import { FirebaseTSFirestore, OrderBy } from 'firebasets/firebasetsFirestore/fir
 })
 export class DashboardComponent implements OnInit {
   firestore = new FirebaseTSFirestore();
-  todoForm !: FormGroup;
   tasks: TicketData [] = [];
   inprogress: TicketData [] = [];
   reopen: TicketData [] = [];
   resolved: TicketData [] = [];
-
+  // isDisabledBtn = true;
 
   onCreateClick(taskId: HTMLInputElement, taskName: HTMLInputElement, taskStatus: HTMLSelectElement){
     let id = taskId.value;
@@ -36,7 +35,6 @@ export class DashboardComponent implements OnInit {
           timestamp: FirebaseTSApp.getFirestoreTimestamp(),
         },
         onComplete: () => {
-          // this.dialog.close();
           this.router.navigate(['/dashboard']);
           window.location.reload();
         },
@@ -60,12 +58,6 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      this.todoForm = this.fb.group({
-        ticketId : ['', Validators.required],
-        taskName : ['', Validators.required],
-        selectStatus : ['', Validators.required]
-
-      });
       this.getTickets();
     }
 

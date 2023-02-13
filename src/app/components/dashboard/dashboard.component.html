@@ -90,6 +90,7 @@
                     <div class="box-no-edit">
                       <div class="btn-icon-container">
                         <button mat-icon-button color="warn" (click)="deleteInProgressTask(i)"><mat-icon>delete</mat-icon></button>
+                        <button mat-icon-button (click)="onEdit(item,i)"><mat-icon [ngStyle]="{'color': '#EFB701'}">edit</mat-icon></button>
                       </div>
                       <div class="item-status">
                         <mat-icon matSuffix [ngStyle]="{'color': 'orange'}">hourglass_top</mat-icon>
@@ -115,6 +116,7 @@
                     <div class="box-no-edit">
                       <div class="btn-icon-container">
                         <button mat-icon-button color="warn" (click)="deleteReopenTask(i)"><mat-icon>delete</mat-icon></button>
+                        <button mat-icon-button (click)="onEdit(item,i)"><mat-icon [ngStyle]="{'color': '#EFB701'}">edit</mat-icon></button>
                       </div>
                       <div class="item-status">
                         <mat-icon matSuffix [ngStyle]="{'color': 'green'}">change_circle</mat-icon>
@@ -140,6 +142,7 @@
                     <div class="box-no-edit">
                       <div class="btn-icon-container">
                         <button mat-icon-button color="warn" (click)="deleteResolvedTask(i)"><mat-icon>delete</mat-icon></button>
+                        <button mat-icon-button (click)="onEdit(item,i)"><mat-icon [ngStyle]="{'color': '#EFB701'}">edit</mat-icon></button>
                       </div>
                       <div class="item-status">
                         <mat-icon matSuffix [ngStyle]="{'color': 'green'}">check_circle</mat-icon>

@@ -128,9 +128,6 @@ export class DashboardComponent implements OnInit {
 
     onEditTask(id:string,index:number,selector?:any,){
       this.isEditEnabled = true;
-      // console.log(this.tasks[index].taskName);
-      // console.log(this.tasks[index].taskId);
-      
       this.firestore.delete({
         path: ['TicketCollection', id],
         onComplete: () => {

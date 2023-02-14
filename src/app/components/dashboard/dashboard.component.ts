@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
@@ -17,7 +17,12 @@ export class DashboardComponent implements OnInit {
   inprogress: TicketData [] = [];
   reopen: TicketData [] = [];
   resolved: TicketData [] = [];
-  // isDisabledBtn = true;
+  isEditEnabled : boolean = false;
+  updateIndex !: any;
+
+  @ViewChild('taskName') taskName!: ElementRef;
+  @ViewChild('taskId') taskId!: ElementRef;
+
 
   onCreateClick(taskId: HTMLInputElement, taskName: HTMLInputElement, taskStatus: HTMLSelectElement){
     let id = taskId.value;
@@ -72,6 +77,7 @@ export class DashboardComponent implements OnInit {
             result.docs.forEach(
               doc => {
                 let ticket = <TicketData>doc.data();
+                console.log(ticket)
                 ticket.id = doc.id;
                 switch (ticket.taskStatus) {
                   case 'To Do':
@@ -110,6 +116,27 @@ export class DashboardComponent implements OnInit {
         path: ['TicketCollection', id],
         onComplete: () => {
           this.clearContainer();
+          this.getTickets();
+       },
+       onFail: err => {
+          alert(err.message);
+       }
+    
+      })
+    }
+    
+
+    onEditTask(id:string,index:number){
+      this.isEditEnabled = true;
+      console.log(this.tasks[index].taskName);
+      console.log(this.tasks[index].taskId);
+      
+      this.firestore.delete({
+        path: ['TicketCollection', id],
+        onComplete: () => {
+          
+          this.taskName.nativeElement.value = this.tasks[index].taskName;
+          this.taskId.nativeElement.value = this.tasks[index].taskId;
           this.getTickets();
        },
        onFail: err => {

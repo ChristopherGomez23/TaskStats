@@ -126,17 +126,16 @@ export class DashboardComponent implements OnInit {
     }
     
 
-    onEditTask(id:string,index:number){
+    onEditTask(id:string,index:number,selector?:any,){
       this.isEditEnabled = true;
-      console.log(this.tasks[index].taskName);
-      console.log(this.tasks[index].taskId);
+      // console.log(this.tasks[index].taskName);
+      // console.log(this.tasks[index].taskId);
       
       this.firestore.delete({
         path: ['TicketCollection', id],
         onComplete: () => {
-          
-          this.taskName.nativeElement.value = this.tasks[index].taskName;
-          this.taskId.nativeElement.value = this.tasks[index].taskId;
+          this.taskName.nativeElement.value = selector[index].taskName;
+          this.taskId.nativeElement.value = selector[index].taskId;
           this.getTickets();
        },
        onFail: err => {
@@ -145,6 +144,7 @@ export class DashboardComponent implements OnInit {
     
       })
     }
+  
 
     drop(event: CdkDragDrop<TicketData[]>) {
       if (event.previousContainer === event.container) {

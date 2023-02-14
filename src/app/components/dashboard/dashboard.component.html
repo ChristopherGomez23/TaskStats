@@ -74,7 +74,7 @@
                       <div class="box">
                           <div class="btn-icon-container">
                             <button mat-icon-button color="warn" (click)="deleteEntry(item.id)"><mat-icon>delete</mat-icon></button>
-                            <button mat-icon-button [ngStyle]="{'color':'#B66910'}" (click)="onEditTask(item.id,i)"><mat-icon>edit</mat-icon></button>
+                            <button mat-icon-button [ngStyle]="{'color':'#B66910'}" (click)="onEditTask(item.id,i,tasks)"><mat-icon>edit</mat-icon></button>
                           </div>
                           <div class="item-status">
                             <mat-icon matSuffix [ngStyle]="{'color': '#1469BD'}">flag_circle</mat-icon>
@@ -108,7 +108,7 @@
                     <div class="box">
                       <div class="btn-icon-container">
                         <button mat-icon-button color="warn" (click)="deleteEntry(item.id)"><mat-icon>delete</mat-icon></button>
-                        <button mat-icon-button [ngStyle]="{'color':'#B66910'}" ><mat-icon>edit</mat-icon></button>
+                        <button mat-icon-button [ngStyle]="{'color':'#B66910'}" (click)="onEditTask(item.id,i,inprogress)"><mat-icon>edit</mat-icon></button>
                       </div>
                       <div class="item-status">
                         <mat-icon matSuffix [ngStyle]="{'color': 'orange'}">hourglass_top</mat-icon>
@@ -132,7 +132,7 @@
                   [cdkDropListData]="reopen"
                   class="example-list"
                   (cdkDropListDropped)="drop($event)">
-                  <div class="example-box" *ngFor="let item of reopen" cdkDrag>
+                  <div class="example-box" *ngFor="let item of reopen;let i = index" cdkDrag>
                     <div>
                       <strong>Task Name</strong>  : {{item.taskName.charAt(0).toUpperCase() + item.taskName.slice(1).toLowerCase()}}
                         <br>
@@ -141,7 +141,7 @@
                     <div class="box">
                       <div class="btn-icon-container">
                         <button mat-icon-button color="warn" (click)="deleteEntry(item.id)"><mat-icon>delete</mat-icon></button>
-                        <button mat-icon-button [ngStyle]="{'color':'#B66910'}" ><mat-icon>edit</mat-icon></button>
+                        <button mat-icon-button [ngStyle]="{'color':'#B66910'}" (click)="onEditTask(item.id,i,reopen)"><mat-icon>edit</mat-icon></button>
                       </div>
                       <div class="item-status">
                         <mat-icon matSuffix [ngStyle]="{'color': 'green'}">change_circle</mat-icon>
@@ -165,7 +165,7 @@
                   [cdkDropListData]="resolved"
                   class="example-list"
                   (cdkDropListDropped)="drop($event)">
-                  <div class="example-box" *ngFor="let item of resolved" cdkDrag>
+                  <div class="example-box" *ngFor="let item of resolved;let i = index" cdkDrag>
                     <div>
                       <strong>Task Name</strong>  : {{item.taskName.charAt(0).toUpperCase() + item.taskName.slice(1).toLowerCase()}}
                         <br>
@@ -174,7 +174,7 @@
                     <div class="box">
                       <div class="btn-icon-container">
                         <button mat-icon-button color="warn" (click)="deleteEntry(item.id)"><mat-icon>delete</mat-icon></button>
-                        <button mat-icon-button [ngStyle]="{'color':'#B66910'}" ><mat-icon>edit</mat-icon></button>
+                        <button mat-icon-button [ngStyle]="{'color':'#B66910'}" (click)="onEditTask(item.id,i,resolved)"><mat-icon>edit</mat-icon></button>
                       </div>
                       <div class="item-status">
                         <mat-icon matSuffix [ngStyle]="{'color': 'green'}">check_circle</mat-icon>

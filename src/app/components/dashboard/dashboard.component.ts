@@ -64,6 +64,7 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit(): void {
       this.getTickets();
+      
     }
 
     getTickets(){
@@ -77,7 +78,6 @@ export class DashboardComponent implements OnInit {
             result.docs.forEach(
               doc => {
                 let ticket = <TicketData>doc.data();
-                console.log(ticket)
                 ticket.id = doc.id;
                 switch (ticket.taskStatus) {
                   case 'To Do':
@@ -146,8 +146,6 @@ export class DashboardComponent implements OnInit {
     drop(event: CdkDragDrop<TicketData[]>) {
       if (event.previousContainer === event.container) {
         moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-        console.log(event.currentIndex)
-  
       } else {
         transferArrayItem(
           event.previousContainer.data,
@@ -162,10 +160,10 @@ export class DashboardComponent implements OnInit {
               taskStatus: event.container.id
             },
             onComplete: () => {
-              console.log("Successful Update")
+              console.log("Updated")
             },
             onFail: () => {
-              console.log("Failed Update")
+              console.log("Did not update")
             },
           }
         )

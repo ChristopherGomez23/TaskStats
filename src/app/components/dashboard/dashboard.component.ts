@@ -171,7 +171,7 @@ export class DashboardComponent implements OnInit {
     }
  
     signOut(){
-      this.auth.SignOut()
+      this.auth.SignOut();
     }
 }
 

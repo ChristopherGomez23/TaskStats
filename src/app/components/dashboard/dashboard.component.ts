@@ -133,7 +133,6 @@ export class DashboardComponent implements OnInit {
         onComplete: () => {
           this.taskName.nativeElement.value = selector[index].taskName;
           this.taskId.nativeElement.value = selector[index].taskId;
-          this.getTickets();
        },
        onFail: err => {
           alert(err.message);
